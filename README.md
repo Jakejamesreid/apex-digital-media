@@ -6,7 +6,7 @@
 ## Welcome to Apex Digital Media!
 
 <div align="center">
-    <img src="https://github.com/Jakejamesreid/apex-digital-media//tree/master/static/img/Apex Digital Logo Rectangle Transparent BG Red Logo.png" alt="Apex Digital Media Logo">
+    <img src="https://raw.githubusercontent.com/Jakejamesreid/apex-digital-media/master/static/img/Apex%20Digital%20Logo%20Rectangle%20Transparent%20BG%20Red%20Logo.png" alt="Apex Digital Media Logo">
 </div>
 
 ***
@@ -113,7 +113,12 @@ This structure is known as WaaS (Website as a Service)
 
 ***
 
-### <summary>Wireframes</summary>
+### Wireframes
+<details open>
+<summary>Homepage</summary>
+<br>
+
+</details>
 
 ***
 
