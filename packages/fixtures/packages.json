@@ -1,0 +1,35 @@
+[
+  {
+    "pk": 1,
+    "model": "packages.package",
+    "fields": {
+      "name": "Start Up",
+      "description": "Ideal for new businesses or businesses without a website.",
+      "features": "Up to 5 Pages",
+      "price": 75,
+      "currency": "€"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "packages.package",
+    "fields": {
+      "name": "Business",
+      "description": "Ideal for a business info style site.",
+      "features": "Up to 10 Pages",
+      "price": 100,
+      "currency": "€"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "packages.package",
+    "fields": {
+      "name": "Executive",
+      "description": "For businesses looking to make the jump to the next level.",
+      "features": "Up to 20 Pages",
+      "price": 250,
+      "currency": "€"
+    }
+  }
+]
