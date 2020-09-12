@@ -10,10 +10,41 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {{ packages }}
+    <div class="w-100 brick-wall-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h1 class="logo-font">Packages</h1>
+                    <hr class="w-50 mb-1">
+                </div>
+            </div>
+            <div class="row">
+                <div class="product-container col-10 offset-1">
+                    <div class="row mt-1 mb-2">
+                        <div class="row">
+                            {% for package in packages %}
+                                <div class="col-sm-12 col-md-4 mb-5 mb-md-0">
+                                    <div class="card text-white h-100 border-0 pb-4 transparent-bg">
+                                        <div class="card-body text-center">
+                                            <h2 class="card-title py-2 font-weight-bold">{{ package.name }}</h2> 
+                                            <p class="card-subtitle">{{ package.description }}</p> 
+                                            <hr class="mx-5 bg-light py-1px">
+                                            <p class="card-text line-height">{{ package.features|linebreaks }}</p>
+                                            <p class="lead mb-0 mt-5  text-center">{{ package.currency }}{{ package.price }}</p>
+                                            <p><small class="">Per Month ex.VAT</small></p>
+                                            <p><small class="">(Minimum 12 Month Contract)</small></p>
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-red">Subscribe</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

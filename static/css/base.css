@@ -1,11 +1,14 @@
 body {
     font-family: 'Montserrat';
+    margin-top: 88px;
 }
 
 .logo-image{
     max-width: 50%;
     height: auto;
 }
+
+/* -----Backgrounds----- */
 
 .hero {
     background: url('/media/Hero-1536x1024.jpg') no-repeat center center;
@@ -20,36 +23,39 @@ body {
   background: rgba(0,0,0,.5);
 }
 
-/* from Bulma */
-.icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.5rem;
-    width: 1.5rem;
+.brick-wall-bg{
+    background: url('/media/wall-brick-white-cracked-paint-texture-background-1536x1025.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
+
+.transparent-bg{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* -----Fonts----- */
 
 .logo-font {
     text-transform: uppercase;
 }
 
-.main-logo-link {
-    width: fit-content;
+.text-black {
+    color: #000 !important;
 }
 
-.shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
+/* -----Colours----- */
+
+.icon-red {
+    color: #ab122b;
 }
+
+/* -----Buttons----- */
 
 .btn-red {
     background: #ab122b;
     color: white;
-}
-
-.icon-red {
-    color: #ab122b;
+    padding: 8px 20px;
 }
 
 .btn-red:hover,
@@ -59,13 +65,36 @@ body {
     color: #ab122b!important;
 }
 
-.text-black {
-    color: #000 !important;
-}
+/* -----Borders----- */
 
 .border-black {
     border: 1px solid black !important;
 }
+
+/* -----Spacing----- */
+.py-1px{
+    padding: 1px 0px
+}
+
+.line-height{
+    line-height: 3rem;
+}
+
+/* -----Misc----- */
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
 
 
 /* -------------------------------- Media Queries */
