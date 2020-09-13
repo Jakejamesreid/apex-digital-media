@@ -14,18 +14,16 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center mt-3">
-                    <h1 class="logo-font">Package</h1>
+                    <h1 class="logo-font">Packages</h1>
                     <hr class="w-50 mb-1">
                 </div>
             </div>
             <div class="row">
                 <div class="product-container col-10 offset-1">
                     <div class="row mt-1 mb-2">
-                        {% for package in packages %}
-                            <div class="col-sm-12 col-md-4 mb-5 mb-md-0">
-                                {% include 'includes/package.html' %}
-                            </div>
-                        {% endfor %}
+                        <div class="col-12 col-md-6">
+                            {% include 'includes/package.html' %}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,16 @@
+<div class="card text-white h-100 border-0 pb-4 transparent-bg">
+    <div class="card-body text-center">
+        <h2 class="card-title py-2 font-weight-bold">{{ package.name }}</h2> 
+        <p class="card-subtitle">{{ package.description }}</p> 
+        <hr class="mx-5 bg-light py-1px">
+        <p class="card-text line-height">{{ package.features|linebreaks }}</p>
+        <p class="lead mb-0 mt-5  text-center">{{ package.currency }}{{ package.price }}</p>
+        <p><small class="">Per Month ex.VAT</small></p>
+        <p><small class="">(Minimum 12 Month Contract)</small></p>
+        {% if package.id|stringformat:"i" not in request.path %}
+            <div class="text-center">
+                <a href="{% url 'package_detail' package.id %}" class="btn btn-red">Subscribe</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
