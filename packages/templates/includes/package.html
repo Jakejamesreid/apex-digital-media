@@ -9,7 +9,7 @@
         <p><small class="">(Minimum 12 Month Contract)</small></p>
         {% if package.id|stringformat:"i" not in request.path %}
             <div class="text-center">
-                <a href="{% url 'package_detail' package.id %}" class="btn btn-red">Subscribe</a>
+                <a href="{% url 'checkout' package.id %}" class="btn btn-red">Subscribe</a>
             </div>
         {% endif %}
     </div>
