@@ -30,9 +30,6 @@ body {
     width: 100%;
 }
 
-.transparent-bg{
-    background-color: rgba(0, 0, 0, 0.6);
-}
 
 /* -----Fonts----- */
 
@@ -50,6 +47,14 @@ body {
     color: #ab122b;
 }
 
+.transparent-bg{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.red-bg{
+    background-color: #ab122b;
+}
+
 /* -----Buttons----- */
 
 .btn-red {
@@ -65,6 +70,19 @@ body {
     color: #ab122b!important;
 }
 
+.btn-white {
+    background: white;
+    color: #ab122b;
+    padding: 8px 20px;
+}
+
+.btn-white:hover,
+.btn-white:active,
+.btn-white:focus {
+    background: #ab122b!important;
+    color: white!important;
+    padding: 8px 20px;
+}
 /* -----Borders----- */
 
 .border-black {
