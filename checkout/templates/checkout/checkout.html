@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-12 col-md-6 red-bg py-4 border">
                             <p class="text-white">Please fill out the form below to complete your order</p>
-                            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                            <form action="{% url 'checkout' package.id %}" method="POST" id="payment-form">
                                 {% csrf_token %}
                                 <fieldset class="rounded px-3 mb-5">
                                     <legend class="fieldset-label small text-white px-2 w-auto">Details</legend>
@@ -74,7 +74,7 @@
                                         <span class="icon text-white">
                                             <i class="fas fa-exclamation-circle"></i>
                                         </span>
-                                        <span class="text-white">Your card will be charged <strong>${{ total|floatformat:2 }}</strong></span>
+                                        <span class="text-white">Your card will be charged <strong>${{ package.price|floatformat:2 }}</strong></span>
                                     </p>
                                 </div>
                             </form>
