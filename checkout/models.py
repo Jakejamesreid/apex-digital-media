@@ -20,6 +20,8 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=1)
     package = models.ForeignKey(Package, null=True, blank=False,
                                 on_delete=models.CASCADE)
+    stripe_pid = models.CharField(
+        max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """

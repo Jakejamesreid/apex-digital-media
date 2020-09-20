@@ -6,6 +6,7 @@ from .forms import OrderForm
 from .models import Order
 
 import stripe
+import json
 
 
 # package_id is default 0 for when payment form is submitted
@@ -32,6 +33,8 @@ def checkout(request, package_id):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
             order.package = package
             order.save()
             print("Order form is valid: ", order)

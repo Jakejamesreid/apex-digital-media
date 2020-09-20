@@ -9,10 +9,11 @@ class OrderAdmin(admin.ModelAdmin):
     fields = ('order_number', 'date', 'first_name', 'last_name',
               'email', 'phone_number', 'country', 'postcode',
               'town_or_city', 'street_address1',
-              'street_address2', 'county', 'package',)
+              'street_address2', 'county', 'package',
+              'stripe_pid')
 
     list_display = ('order_number', 'date', 'first_name',
-                    'last_name', 'package',)
+                    'last_name', 'package', 'stripe_pid')
 
     ordering = ('-date',)
 
