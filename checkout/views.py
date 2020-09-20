@@ -27,14 +27,13 @@ def checkout(request, package_id):
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
-            'total': total,
+            'package': package,
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            order.total = total
+            order.package = package
             order.save()
-            order = order_form.save()
             print("Order form is valid: ", order)
             return redirect(reverse(
                 'checkout_success', args=[order.order_number]))

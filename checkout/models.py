@@ -2,6 +2,8 @@ import uuid
 
 from django.db import models
 
+from packages.models import Package
+
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
@@ -18,6 +20,8 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=1)
     total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
+    package = models.ForeignKey(Package, null=True, blank=False,
+                                on_delete=models.CASCADE)
 
     def _generate_order_number(self):
         """

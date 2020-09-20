@@ -4,15 +4,15 @@ from .models import Order
 
 class OrderAdmin(admin.ModelAdmin):
 
-    readonly_fields = ('order_number', 'date', 'total',)
+    readonly_fields = ('order_number', 'date',)
 
     fields = ('order_number', 'date', 'first_name', 'last_name',
               'email', 'phone_number', 'country', 'postcode',
               'town_or_city', 'street_address1',
-              'street_address2', 'county', 'total',)
+              'street_address2', 'county', 'package',)
 
     list_display = ('order_number', 'date', 'first_name',
-                    'last_name', 'total',)
+                    'last_name', 'package',)
 
     ordering = ('-date',)
 
