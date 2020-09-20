@@ -18,8 +18,6 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=1, blank=True)
     county = models.CharField(max_length=80, null=1, blank=True)
     date = models.DateTimeField(auto_now_add=1)
-    total = models.DecimalField(
-        max_digits=10, decimal_places=2, null=False, default=0)
     package = models.ForeignKey(Package, null=True, blank=False,
                                 on_delete=models.CASCADE)
 
