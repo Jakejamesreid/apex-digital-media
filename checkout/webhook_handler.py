@@ -2,6 +2,7 @@ from django.http import HttpResponse
 
 from .models import Order
 from packages.models import Package
+from profiles.models import UserProfile
 
 import json
 import time
@@ -34,6 +35,20 @@ class StripeWH_Handler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
+
+        # Update profile information
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            profile.default_phone_number = shipping_details.phone
+            profile.default_country = shipping_details.address.country
+            profile.default_postcode = shipping_details.address.postal_code
+            profile.default_town_or_city = shipping_details.address.city
+            profile.default_street_address1 = shipping_details.address.line1
+            profile.default_street_address2 = shipping_details.address.line2
+            profile.default_county = shipping_details.address.state
+            profile.save()
 
         order_exists = False
         first_name, last_name = shipping_details.name.split(" ")
@@ -69,6 +84,7 @@ class StripeWH_Handler:
                 order = Order.objects.create(
                     first_name=first_name,
                     last_name=last_name,
+                    user_profile=profile,
                     email=billing_details.email,
                     phone_number=shipping_details.phone,
                     country=shipping_details.address.country,
