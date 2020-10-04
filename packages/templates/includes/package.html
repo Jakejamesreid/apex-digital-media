@@ -12,5 +12,13 @@
                 <a href="{% url 'checkout' package.id %}" class="btn btn-red">Subscribe</a>
             </div>
         {% endif %}
+        {% if request.user.is_superuser %}
+            <div class="mt-2">
+                <small class="ml-3">
+                    <a class="text-white" href="{% url 'edit_package' package.id %}">Edit</a> | 
+                    <a class="text-danger" href="{% url 'delete_package' package.id %}">Delete</a>
+                </small>
+            </div>
+        {% endif %}
     </div>
 </div>

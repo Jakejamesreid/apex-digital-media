@@ -42,7 +42,7 @@ def edit_package(request, package_id):
     if request.method == 'POST':
         form = PackageForm(request.POST, instance=package)
         if form.is_valid():
-            form.save()
+            package = form.save()
             print(request, 'Successfully updated package!')
             return redirect(reverse('packages'))
         else:
@@ -58,3 +58,11 @@ def edit_package(request, package_id):
     }
 
     return render(request, template, context)
+
+
+def delete_package(request, package_id):
+    """ Delete a package from the store """
+    package = get_object_or_404(Package, pk=package_id)
+    package.delete()
+    print(request, 'Package deleted!')
+    return redirect(reverse('packages'))
