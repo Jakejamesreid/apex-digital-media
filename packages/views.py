@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Package
 from .forms import PackageForm
 
@@ -31,6 +31,30 @@ def add_package(request):
     template = 'packages/add_package.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def edit_package(request, package_id):
+    """ Edit a package in the store """
+    package = get_object_or_404(Package, pk=package_id)
+    if request.method == 'POST':
+        form = PackageForm(request.POST, instance=package)
+        if form.is_valid():
+            form.save()
+            print(request, 'Successfully updated package!')
+            return redirect(reverse('packages'))
+        else:
+            print(request, 'Failed to update package. Please ensure the form is valid.')
+    else:
+        form = PackageForm(instance=package)
+        print(request, f'You are editing {package.name}')
+
+    template = 'packages/edit_package.html'
+    context = {
+        'form': form,
+        'package': package,
     }
 
     return render(request, template, context)
