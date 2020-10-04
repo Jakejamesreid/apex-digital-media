@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Package
 from .forms import PackageForm
 
@@ -15,6 +16,7 @@ def all_packages(request):
     return render(request, 'packages/packages.html', context)
 
 
+@login_required
 def add_package(request):
     """ Add a package to the store """
     if request.method == 'POST':
@@ -36,8 +38,13 @@ def add_package(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_package(request, package_id):
     """ Edit a package in the store """
+    if not request.user.is_superuser:
+        print(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
     package = get_object_or_404(Package, pk=package_id)
     if request.method == 'POST':
         form = PackageForm(request.POST, instance=package)
@@ -60,8 +67,13 @@ def edit_package(request, package_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_package(request, package_id):
     """ Delete a package from the store """
+    if not request.user.is_superuser:
+        print(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
     package = get_object_or_404(Package, pk=package_id)
     package.delete()
     print(request, 'Package deleted!')
