@@ -99,6 +99,74 @@ body {
     line-height: 3rem;
 }
 
+/* -----Top Navbar----- */
+#topnav{
+    border-bottom: 2px solid #ab122b;
+}
+
+
+/* -----Dashboard----- */
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#dashboard-content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    position: absolute;
+    top: 81.5px;
+    right: 0;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 81.5px;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+}
+
+#sidebar:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    z-index: -1;
+}
+
+#sidebar .sidebar-header {
+    padding: 40px 0 20px 10px;
+    border-bottom: 1px solid #999;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color: #fff;
+}
+
+#sidebar ul li a:hover {
+    color: #fff;
+    background: #ab122b;
+    text-decoration: none;
+}
+
+#sidebar ul li.active>a {
+    color: #ab122b;
+    background: #fff;
+    font-weight: bold;
+}
+
+
 /* -----Misc----- */
 
 /* from Bulma */

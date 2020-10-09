@@ -93,7 +93,27 @@
         {% endblock %}
 
         {% block content %}
+            <!-- Customise the Dashboard login area -->
+            <div class="wrapper">
+                {% include 'includes/sidebar.html' %}
+                <div class="container" id="dashboard-content">
+                    <div class="row justify-content-end">
+                        <div class="col-12">
+                            <hr>
+                            <h2 class="logo-font mb-4 text-center">{% block dashboard_heading %}{% endblock %}</h2>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-12">
+                            {% block dashboard_content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endblock %}
+
 
         {% block postloadjs %}
         {% endblock %}
