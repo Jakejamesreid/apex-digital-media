@@ -8,9 +8,15 @@
         <p><small class="">Per Month ex.VAT</small></p>
         <p><small class="">(Minimum 12 Month Contract)</small></p>
         {% if package.id|stringformat:"i" not in request.path %}
-            <div class="text-center">
-                <a href="{% url 'checkout' package.id %}" class="btn btn-red">Subscribe</a>
-            </div>
+            {% if user.is_authenticated %}
+                <div class="text-center">
+                    <a href="{% url 'checkout' package.id %}" class="btn btn-red">Subscribe</a>
+                </div>
+            {% else %}
+                <div class="text-center">
+                    <a href="{% url 'account_signup' %}" class="btn btn-red">Subscribe</a>
+                </div>
+            {% endif %}
         {% endif %}
         {% if request.user.is_superuser %}
             <div class="mt-2">

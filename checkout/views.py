@@ -1,6 +1,7 @@
 from django.shortcuts import (
     render, redirect, reverse, get_object_or_404, HttpResponse
 )
+from django.contrib.auth.decorators import login_required
 from packages.models import Package
 from django.views.decorators.http import require_POST
 from django.conf import settings
@@ -29,6 +30,7 @@ def cache_checkout_data(request):
 
 
 # package_id is default 0 for when payment form is submitted
+@login_required
 def checkout(request, package_id):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
