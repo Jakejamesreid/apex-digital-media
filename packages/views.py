@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Package
+from django.shortcuts import get_object_or_404, redirect, render, reverse
+
+from profiles.models import UserProfile
+
 from .forms import PackageForm
+from .models import Package
 
 
 def all_packages(request):
@@ -42,7 +45,7 @@ def add_package(request):
 def edit_package(request, package_id):
     """ Edit a package in the store """
     if not request.user.is_superuser:
-        print(request, 'Sorry, only store owners can do that.')
+        print(request, 'Sorry, only admins can do that.')
         return redirect(reverse('home'))
 
     package = get_object_or_404(Package, pk=package_id)
@@ -71,7 +74,7 @@ def edit_package(request, package_id):
 def delete_package(request, package_id):
     """ Delete a package from the store """
     if not request.user.is_superuser:
-        print(request, 'Sorry, only store owners can do that.')
+        print(request, 'Sorry, only admins can do that.')
         return redirect(reverse('home'))
 
     package = get_object_or_404(Package, pk=package_id)

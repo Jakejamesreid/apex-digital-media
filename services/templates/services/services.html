@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block dashboard_heading %}Services{% endblock %}
+
+{% block dashboard_content %}
+    <table class="table mb0 table-files noselect">
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center">
+                    Plan: {{ order.package }}
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Remaining Single Use Services
+                </th>
+                <th>
+                    Remaining Monthly Services                   
+                </th>
+            </tr>
+        </thead>
+        <tbody class="file-item">
+            <tr class="item-list">
+                <td>
+                    Pages: 1       
+                </td>
+                <td>
+                    Website Updates: 1                       
+                </td>
+            </tr>
+            <tr class="item-list">
+                <td>
+                    Email Addresses: 1   
+                </td>
+                <td>
+                    SEO Updates: 1   
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

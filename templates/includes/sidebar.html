@@ -10,7 +10,7 @@
             <a href="{% url 'profile' %}">Profile</a>
         </li>
         <li class="{% if request.resolver_match.view_name == 'package' %}active{% endif %}">
-            <a href="">Package</a>
+            <a href="{% url 'services' %}">Services</a>
         </li>
         <li class="{% if request.resolver_match.view_name == 'request-sevice' %}active{% endif %}">
             <a href="">Request Service</a>
