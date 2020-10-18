@@ -8,7 +8,7 @@ from django.conf import settings
 
 from .forms import OrderForm
 from .models import Order
-from profiles.models import UserProfile
+from profiles.models import UserProfile, ProfileLineItem
 from profiles.forms import UserProfileForm
 
 import stripe
@@ -117,6 +117,35 @@ def checkout_success(request, order_number):
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
+
+        package = get_object_or_404(Package, pk=order.package_id)
+        remaining_services = ProfileLineItem(
+                    profile=profile,
+                    package=package,
+                    remaining_pages=6,
+                    remaining_email_addresses=2,
+                    remaining_seo_updates=2,
+                    remaining_website_updates=5,
+                )
+        if package.id == 2:
+            remaining_services = ProfileLineItem(
+                                profile=profile,
+                                package=package,
+                                remaining_pages=12,
+                                remaining_email_addresses=5,
+                                remaining_seo_updates=2,
+                                remaining_website_updates=10,
+                            )
+        elif package.id == 3:
+            remaining_services = ProfileLineItem(
+                                profile=profile,
+                                package=package,
+                                remaining_pages=20,
+                                remaining_email_addresses=10,
+                                remaining_seo_updates=2,
+                                remaining_website_updates=20,
+                            )
+        remaining_services.save()
 
         profile_data = {
             'default_phone_number': order.phone_number,

@@ -1,10 +1,10 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from services.models import Services
-
 from django_countries.fields import CountryField
+
+from packages.models import Package
 
 
 class UserProfile(models.Model):
@@ -25,8 +25,6 @@ class UserProfile(models.Model):
     default_postcode = models.CharField(max_length=20, null=True, blank=True)
     default_country = CountryField(
         blank_label='Country', null=True, blank=True)
-    services = models.ForeignKey(Services, null=True, blank=False,
-                                 on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.username
@@ -41,3 +39,23 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
     instance.userprofile.save()
+
+
+class ProfileLineItem(models.Model):
+    profile = models.ForeignKey(UserProfile, null=False, blank=False,
+                                on_delete=models.CASCADE,
+                                related_name='lineitems')
+    package = models.ForeignKey(Package, null=True, blank=False,
+                                editable=False,
+                                on_delete=models.CASCADE)
+
+    remaining_pages = models.PositiveSmallIntegerField(null=True, default=0)
+    remaining_email_addresses = models.PositiveSmallIntegerField(
+        null=True, default=0)
+    remaining_seo_updates = models.PositiveSmallIntegerField(
+        null=True, default=0)
+    remaining_website_updates = models.PositiveSmallIntegerField(
+        null=True, default=0)
+
+    def __str__(self):
+        return 'Remaining Services'
