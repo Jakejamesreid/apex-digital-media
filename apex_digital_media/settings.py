@@ -206,4 +206,4 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET_KEY = os.getenv('STRIPE_WH_SECRET_APEX', '')
 
-DEFAULT_FROM_EMAIL = 'support@example.com'
+DEFAULT_FROM_EMAIL = 'support@apexdigitalmedia.ie'
