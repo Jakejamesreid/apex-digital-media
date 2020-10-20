@@ -7,7 +7,7 @@
     <!-- Menu Items  -->
     <ul class="list-unstyled components">
         <li class="{% if request.resolver_match.view_name == 'profile' %}active{% endif %}">
-            <a href="{% url 'profile' %}">Profile</a>
+            <a href="{% url 'profiles:profile' %}">Profile</a>
         </li>
         <li class="{% if request.resolver_match.view_name == 'package' %}active{% endif %}">
             <a href="{% url 'services' %}">Services</a>
