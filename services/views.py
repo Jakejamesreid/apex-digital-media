@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 
-from profiles.models import UserProfile, ProfileLineItem
+from profiles.models import ProfileLineItem, UserProfile
+
 from .forms import RequestServiceForm
 
 
@@ -34,25 +36,12 @@ def services(request):
 
 @login_required
 def request_service(request):
-    """ Display the user's profile. """
-    profile = get_object_or_404(UserProfile, user=request.user)
-
-    if request.method == 'POST':
-        form = RequestServiceForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            print(request, 'Profile updated successfully')
-        else:
-            print(request, 'Update failed. Please ensure the form is valid.')
-    else:
-        form = RequestServiceForm()
-    orders = profile.orders.all()
+    """ Display the request service form. """
+    form = RequestServiceForm()
 
     template = 'services/request-service.html'
     context = {
         'form': form,
-        'orders': orders,
-        'on_profile_page': True
     }
 
     return render(request, template, context)

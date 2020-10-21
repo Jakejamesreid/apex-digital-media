@@ -46,22 +46,38 @@ def decrement_service(request):
             if form.data['services'] == 'new-page':
                 if remaining_services.remaining_pages > 0:
                     remaining_services.remaining_pages -= 1
+                    messages.success(request, 'Service successfully requested')
+                else:
+                    messages.error(request,
+                                   'You have used up your remaining new \
+                                       website pages.')
 
             if form.data['services'] == 'web-update':
                 if remaining_services.remaining_website_updates > 0:
                     remaining_services.remaining_website_updates -= 1
+                    messages.success(request, 'Service successfully requested')
+                else:
+                    messages.error(request, 'You have used up your remaining website updates\
+                         for this month.')
 
             if form.data['services'] == 'seo-update':
                 if remaining_services.remaining_seo_updates > 0:
                     remaining_services.remaining_seo_updates -= 1
+                    messages.success(request, 'Service successfully requested')
+                else:
+                    messages.error(request, 'You have used up your remaining \
+                        SEO updates for this month.')
 
             if form.data['services'] == 'add-email':
                 if remaining_services.remaining_email_addresses > 0:
                     remaining_services.remaining_email_addresses -= 1
+                    messages.success(request, 'Service successfully requested')
+                else:
+                    messages.error(request, 'You have used up your remaining \
+                        Email adresses.')
 
             remaining_services.save()
-            print(request, 'Successfully updated sevices')
         else:
-            print(request, 'Failed to update services')
+            messages.error(request, 'Form is invalid')
 
     return redirect(reverse('services'))
