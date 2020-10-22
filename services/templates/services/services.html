@@ -1,42 +1,52 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'services/css/services.css' %}">
+{% endblock %}
+
 {% block dashboard_heading %}Services{% endblock %}
 
 {% block dashboard_content %}
-    <table class="table mb0 table-files noselect">
-        <thead>
-            <tr>
-                <th colspan="2" class="text-center">
-                    Plan: {{ order.package }}
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    Remaining Single Use Services
-                </th>
-                <th>
-                    Remaining Monthly Services                   
-                </th>
-            </tr>
-        </thead>
-        <tbody class="file-item">
-            <tr class="item-list">
-                <td>
-                    Pages: {{ remaining_services.remaining_pages }}
-                </td>
-                <td>
-                    Website Updates: {{ remaining_services.remaining_website_updates }}                   
-                </td>
-            </tr>
-            <tr class="item-list">
-                <td>
-                    Email Addresses: {{ remaining_services.remaining_email_addresses }}
-                </td>
-                <td>
-                    SEO Updates: {{ remaining_services.remaining_seo_updates }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    {% for service in remaining_services %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center">
+                        Plan: {{ service.package.name }}
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Remaining Single Use Services
+                    </th>
+                    <th>
+                        Remaining Monthly Services                   
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="file-item">
+                    <tr class="item-list">
+                        <td class="service-table-cell">
+                            Pages: {{ service.remaining_pages }}
+                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>
+                        </td>
+                        <td>
+                            Website Updates: {{ service.remaining_website_updates }}
+                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>       
+                        </td>
+                    </tr>
+                    <tr class="item-list">
+                        <td>
+                            Email Addresses: {{ service.remaining_email_addresses }}
+                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>
+                        </td>
+                        <td>
+                            SEO Updates: {{ service.remaining_seo_updates }}
+                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    {% endfor %}
 {% endblock %}

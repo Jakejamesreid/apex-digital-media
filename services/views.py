@@ -15,15 +15,9 @@ def services(request):
         return redirect(reverse('home'))
 
     profile = get_object_or_404(UserProfile, user=request.user)
-    orders = profile.orders.all()
-    order = None
-    for element in orders:
-        order = element
-        break
 
-    remaining_services = ProfileLineItem.objects.filter(profile=profile).first()
+    remaining_services = ProfileLineItem.objects.filter(profile=profile)
     context = {
-        'order': order,
         'remaining_services': remaining_services,
     }
 

@@ -1,0 +1,23 @@
+.table-btn-red {
+    background: #ab122b;
+    color: white;
+    padding: 5px 9px;
+    font-size: 14px;
+    border-radius: 15px;
+}
+
+.table-btn-red:hover,
+.table-btn-red:active,
+.table-btn-red:focus {
+    background: white!important;
+    color: #ab122b!important;
+    font-weight: bolder;
+}
+
+td{
+    padding: 1.2em 1.2em!important;
+}
+
+.table{
+    margin-bottom: 50px!important;
+}
