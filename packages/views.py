@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render, reverse
+from django.contrib import messages
 
 from profiles.models import UserProfile
 
@@ -26,10 +27,10 @@ def add_package(request):
         form = PackageForm(request.POST)
         if form.is_valid():
             form.save()
-            print(request, 'Successfully added package!')
+            messages.success(request, 'Successfully added package!')
             return redirect(reverse('add_package'))
         else:
-            print(request, 'Failed to add package. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add package. Please ensure the form is valid.')
     else:
         form = PackageForm()
 
@@ -45,7 +46,7 @@ def add_package(request):
 def edit_package(request, package_id):
     """ Edit a package in the store """
     if not request.user.is_superuser:
-        print(request, 'Sorry, only admins can do that.')
+        messages.info(request, 'Sorry, only admins can do that.')
         return redirect(reverse('home'))
 
     package = get_object_or_404(Package, pk=package_id)
@@ -53,13 +54,13 @@ def edit_package(request, package_id):
         form = PackageForm(request.POST, instance=package)
         if form.is_valid():
             package = form.save()
-            print(request, 'Successfully updated package!')
+            messages.success(request, 'Successfully updated package!')
             return redirect(reverse('packages'))
         else:
-            print(request, 'Failed to update package. Please ensure the form is valid.')
+            messages.error(request, 'Failed to update package. Please ensure the form is valid.')
     else:
         form = PackageForm(instance=package)
-        print(request, f'You are editing {package.name}')
+        messages.info(request, f'You are editing the {package.name} package')
 
     template = 'packages/edit_package.html'
     context = {
@@ -74,10 +75,10 @@ def edit_package(request, package_id):
 def delete_package(request, package_id):
     """ Delete a package from the store """
     if not request.user.is_superuser:
-        print(request, 'Sorry, only admins can do that.')
+        messages.info(request, 'Sorry, only admins can do that.')
         return redirect(reverse('home'))
 
     package = get_object_or_404(Package, pk=package_id)
     package.delete()
-    print(request, 'Package deleted!')
+    messages.success(request, 'Package deleted!')
     return redirect(reverse('packages'))

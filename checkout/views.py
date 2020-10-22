@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from packages.models import Package
 from django.views.decorators.http import require_POST
 from django.conf import settings
+from django.contrib import messages
 
 from .forms import OrderForm
 from .models import Order
@@ -24,7 +25,7 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        print(request, 'Sorry, your payment cannot be \
+        messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
@@ -58,11 +59,10 @@ def checkout(request, package_id):
             order.stripe_pid = pid
             order.package = package
             order.save()
-            print("Order form is valid: ", order)
             return redirect(reverse(
                 'checkout_success', args=[order.order_number]))
         else:
-            print(request, 'There was an error with your form. \
+            messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
 
     else:
@@ -158,7 +158,7 @@ def checkout_success(request, order_number):
         if user_profile_form.is_valid():
             user_profile_form.save()
 
-    print(request, f'Order successfully processed! \
+    messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 

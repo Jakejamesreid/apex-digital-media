@@ -11,7 +11,7 @@ from .forms import RequestServiceForm
 def services(request):
     """ View services available """
     if not request.user.is_superuser:
-        print(request, 'Sorry, only clients can do that.')
+        messages.info(request, 'Sorry, only clients can do that.')
         return redirect(reverse('home'))
 
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -21,15 +21,12 @@ def services(request):
         order = element
         break
 
-    print(order.package)
-    # package = get_object_or_404(Package, pk=package_id)
     remaining_services = ProfileLineItem.objects.filter(profile=profile).first()
     context = {
         'order': order,
         'remaining_services': remaining_services,
     }
 
-    print(request, 'Services')
     return render(request, 'services/services.html', context)
 
 

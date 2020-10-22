@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.contrib import messages
 
 from .models import Order
 from profiles.models import UserProfile
@@ -85,7 +86,7 @@ class StripeWH_Handler:
             )
             order_exists = True
         except Order.DoesNotExist:
-            print("Order does not exist")
+            messages.error("Order does not exist")
 
         if order_exists:
             self._send_confirmation_email(order)
