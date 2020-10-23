@@ -34,49 +34,22 @@ def profile(request):
 
 
 @login_required
-def decrement_service(request):
+def decrement_service(request, service_id, service_name):
     """ Decrement a particular service for a user. """
     if request.method == 'POST':
         profile = get_object_or_404(UserProfile, user=request.user)
-        remaining_services = ProfileLineItem.objects.filter(
-            profile=profile).first()
 
         form = RequestServiceForm(request.POST)
         if form.is_valid():
-            if form.data['services'] == 'new-page':
-                if remaining_services.remaining_pages > 0:
-                    remaining_services.remaining_pages -= 1
-                    messages.success(request, 'Service successfully requested')
-                else:
-                    messages.error(request,
-                                   'You have used up your remaining new \
-                                       website pages.')
-
-            if form.data['services'] == 'web-update':
-                if remaining_services.remaining_website_updates > 0:
-                    remaining_services.remaining_website_updates -= 1
-                    messages.success(request, 'Service successfully requested')
-                else:
-                    messages.error(request, 'You have used up your remaining website updates\
-                         for this month.')
-
-            if form.data['services'] == 'seo-update':
-                if remaining_services.remaining_seo_updates > 0:
-                    remaining_services.remaining_seo_updates -= 1
-                    messages.success(request, 'Service successfully requested')
-                else:
-                    messages.error(request, 'You have used up your remaining \
-                        SEO updates for this month.')
-
-            if form.data['services'] == 'add-email':
-                if remaining_services.remaining_email_addresses > 0:
-                    remaining_services.remaining_email_addresses -= 1
-                    messages.success(request, 'Service successfully requested')
-                else:
-                    messages.error(request, 'You have used up your remaining \
-                        Email adresses.')
-
-            remaining_services.save()
+            service = ProfileLineItem.objects.filter(profile=profile, id=service_id).values()
+            if service[0][service_name] > 0:
+                data = {
+                    service_name: service[0][service_name]-1
+                }
+                ProfileLineItem.objects.filter(profile=profile, id=service_id).update(**data)
+            else:
+                messages.error(request,
+                                f'You have used up this service.')
         else:
             messages.error(request, 'Form is invalid')
 

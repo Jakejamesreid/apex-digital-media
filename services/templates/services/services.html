@@ -29,21 +29,21 @@
                     <tr class="item-list">
                         <td class="service-table-cell">
                             Pages: {{ service.remaining_pages }}
-                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>
+                            <a type="button" href="{% url 'request-service' service.id service_name.0 %}" class="btn table-btn-red float-right">Request Service</a>
                         </td>
                         <td>
                             Website Updates: {{ service.remaining_website_updates }}
-                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>       
+                            <a type="button" href="{% url 'request-service' service.id service_name.1 %}" class="btn table-btn-red float-right">Request Service</a>       
                         </td>
                     </tr>
                     <tr class="item-list">
                         <td>
                             Email Addresses: {{ service.remaining_email_addresses }}
-                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>
+                            <a type="button" href="{% url 'request-service' service.id service_name.2 %}" class="btn table-btn-red float-right">Request Service</a>
                         </td>
                         <td>
                             SEO Updates: {{ service.remaining_seo_updates }}
-                            <a type="button" href="" class="btn table-btn-red float-right">Request Service</a>
+                            <a type="button" href="{% url 'request-service' service.id service_name.3 %}" class="btn table-btn-red float-right">Request Service</a>
                         </td>
                     </tr>
             </tbody>

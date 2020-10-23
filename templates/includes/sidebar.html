@@ -12,9 +12,6 @@
         <li class="{% if request.resolver_match.view_name == 'package' %}active{% endif %}">
             <a href="{% url 'services' %}">Services</a>
         </li>
-        <li class="{% if request.resolver_match.view_name == 'request-sevice' %}active{% endif %}">
-            <a href="{% url 'request-service' %}">Request Service</a>
-        </li>
         <li class="{% if request.resolver_match.view_name == 'testimonial' %}active{% endif %}">
             <a href="">Testimonial</a>
         </li>
