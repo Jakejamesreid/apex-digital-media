@@ -6,10 +6,13 @@
 
     <!-- Menu Items  -->
     <ul class="list-unstyled components">
-        <li class="{% if request.resolver_match.view_name == 'profile' %}active{% endif %}">
+        <li class="{% if request.resolver_match.view_name == 'profiles:profile' %}active{% endif %}">
             <a href="{% url 'profiles:profile' %}">Profile</a>
         </li>
-        <li class="{% if request.resolver_match.view_name == 'package' %}active{% endif %}">
+        <li class="{% if request.resolver_match.view_name == 'website_details' %}active{% endif %}">
+            <a href="{% url 'website_details' %}">Website Details</a>
+        </li>
+        <li class="{% if request.resolver_match.view_name == 'services' %}active{% endif %}">
             <a href="{% url 'services' %}">Services</a>
         </li>
         <li class="{% if request.resolver_match.view_name == 'testimonial' %}active{% endif %}">
