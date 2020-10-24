@@ -10,6 +10,7 @@ from django.contrib import messages
 from .forms import OrderForm
 from .models import Order
 from profiles.models import UserProfile, ProfileLineItem
+from services.models import Services
 from profiles.forms import UserProfileForm
 
 import stripe
@@ -117,7 +118,7 @@ def checkout_success(request, order_number):
         order.save()
 
         package = get_object_or_404(Package, pk=order.package_id)
-        remaining_services = ProfileLineItem(
+        remaining_services = Services(
                     profile=profile,
                     package=package,
                     remaining_pages=6,
@@ -126,7 +127,7 @@ def checkout_success(request, order_number):
                     remaining_website_updates=5,
                 )
         if package.id == 2:
-            remaining_services = ProfileLineItem(
+            remaining_services = Services(
                                 profile=profile,
                                 package=package,
                                 remaining_pages=12,
@@ -135,7 +136,7 @@ def checkout_success(request, order_number):
                                 remaining_website_updates=10,
                             )
         elif package.id == 3:
-            remaining_services = ProfileLineItem(
+            remaining_services = Services(
                                 profile=profile,
                                 package=package,
                                 remaining_pages=20,

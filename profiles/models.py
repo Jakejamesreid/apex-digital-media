@@ -49,13 +49,5 @@ class ProfileLineItem(models.Model):
                                 editable=False,
                                 on_delete=models.CASCADE)
 
-    remaining_pages = models.PositiveSmallIntegerField(null=True, default=0)
-    remaining_email_addresses = models.PositiveSmallIntegerField(
-        null=True, default=0)
-    remaining_seo_updates = models.PositiveSmallIntegerField(
-        null=True, default=0)
-    remaining_website_updates = models.PositiveSmallIntegerField(
-        null=True, default=0)
-
     def __str__(self):
         return 'Remaining Services'

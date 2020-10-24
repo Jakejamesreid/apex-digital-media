@@ -1,14 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect, render, reverse
-from django.template.loader import render_to_string
-from django.core.mail import send_mail
-from django.conf import settings
-
-from services.forms import RequestServiceForm
+from django.shortcuts import get_object_or_404, render
 
 from .forms import UserProfileForm
-from .models import ProfileLineItem, UserProfile
+from .models import UserProfile
 
 
 @login_required
@@ -35,46 +30,3 @@ def profile(request):
     }
 
     return render(request, template, context)
-
-
-@login_required
-def decrement_service(request, service_id, service_name):
-    """ Decrement a particular service for a user. """
-    if request.method == 'POST':
-        profile = get_object_or_404(UserProfile, user=request.user)
-
-        form = RequestServiceForm(request.POST)
-        if form.is_valid():
-            service = ProfileLineItem.objects.filter(
-                profile=profile, id=service_id).values()
-            if service[0][service_name] > 0:
-                data = {
-                    service_name: service[0][service_name]-1
-                }
-                ProfileLineItem.objects.filter(
-                    profile=profile, id=service_id).update(**data)
-
-                subject = render_to_string(
-                    'profiles/service_request_emails/email_subject.txt',
-                    {'request': service_name.replace('_', ' ')})
-                body = render_to_string(
-                    'profiles/service_request_emails/email_body.txt', {
-                        'user': profile.user,
-                        'service_name': service_name,
-                        'service_id': service_id,
-                        'description': request.POST['description']
-                    }
-                )
-                send_mail(
-                    subject,
-                    body,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [settings.DEFAULT_FROM_EMAIL]
-                )
-
-            else:
-                messages.error(request, 'You have used up this service.')
-        else:
-            messages.error(request, 'Form is invalid')
-
-    return redirect(reverse('services'))

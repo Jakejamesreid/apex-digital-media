@@ -1,21 +1,40 @@
 from django.contrib import admin
+from django.db import models
+from django.forms import Textarea, TextInput
 
+from services.models import Services
 from website_details.models import Website
 
-from .models import ProfileLineItem, UserProfile
+from .models import UserProfile
 
 
 class WebsiteAdminInline(admin.TabularInline):
     extra = 0
 
     model = Website
-    readonly_fields = ('user_profile',)
+    readonly_fields = ('id', 'user_profile',)
 
-    list_display = ('id', 'user_profile', 'company_name',
-                    'company_description', 'current_url',
-                    'new_site_description',)
-    fields = ('user_profile', 'company_name', 'company_description',
-              'current_url', 'new_site_description',)
+    list_display = (
+        'id',
+        'user_profile',
+        'company_name',
+        'company_description',
+        'current_url',
+        'new_site_description',
+    )
+    fields = (
+        'id',
+        'user_profile',
+        'company_name',
+        'company_description',
+        'current_url',
+        'new_site_description',
+    )
+
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size': '40'})},
+        models.TextField: {'widget': Textarea(attrs={'rows': 4, 'cols': 40})},
+    }
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -27,7 +46,8 @@ class WebsiteAdminInline(admin.TabularInline):
 class ProfileLineItemAdminInline(admin.TabularInline):
     extra = 0
 
-    model = ProfileLineItem
+    model = Services
+
     readonly_fields = ('package', 'id')
     list_display = (
         'id',
