@@ -10,9 +10,6 @@ from .forms import WebsiteForm
 @login_required
 def website_details(request):
     """ View and submit website details. """
-    if not request.user.is_superuser:
-        messages.info(request, 'Sorry, only clients can do that.')
-        return redirect(reverse('home'))
 
     if request.method == 'POST':
         form = WebsiteForm(request.POST)

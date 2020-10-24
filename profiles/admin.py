@@ -1,8 +1,32 @@
 from django.contrib import admin
-from .models import UserProfile, ProfileLineItem
+
+from website_details.models import Website
+
+from .models import ProfileLineItem, UserProfile
+
+
+class WebsiteAdminInline(admin.TabularInline):
+    extra = 0
+
+    model = Website
+    readonly_fields = ('user_profile',)
+
+    list_display = ('id', 'user_profile', 'company_name',
+                    'company_description', 'current_url',
+                    'new_site_description',)
+    fields = ('user_profile', 'company_name', 'company_description',
+              'current_url', 'new_site_description',)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(author=request.user)
 
 
 class ProfileLineItemAdminInline(admin.TabularInline):
+    extra = 0
+
     model = ProfileLineItem
     readonly_fields = ('package', 'id')
     list_display = (
@@ -21,13 +45,9 @@ class ProfileLineItemAdminInline(admin.TabularInline):
         'remaining_website_updates',
     )
 
-    def get_extra(self, request, obj=None, **kwargs):
-        extra = 0
-        return extra
-
 
 class AdminProfile(admin.ModelAdmin):
-    inlines = (ProfileLineItemAdminInline,)
+    inlines = (ProfileLineItemAdminInline, WebsiteAdminInline,)
 
 
 admin.site.register(UserProfile, AdminProfile)
