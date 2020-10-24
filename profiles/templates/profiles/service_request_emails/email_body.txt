@@ -1,0 +1,9 @@
+New service request from {{ user }}
+
+Service ID: {{ service_id }}
+Service Name: {{ service_name|capfirst }}
+
+Description:
+{{ description }}
+
+Contact the customer at: {{ user.email }}
