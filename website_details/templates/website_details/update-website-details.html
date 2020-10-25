@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'website_details/css/website_details.css' %}">
+{% endblock %}
+
+{% block dashboard_heading %}Update Website Details{% endblock %}
+
+{% block dashboard_content %}
+    {% for form in forms %}
+    <form class="mt-3" action="{% url 'website_details' form.instance.id %}" method="POST" id="website-details-form">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" name="update-website" id="update-website" class="btn btn-red rounded-0 text-uppercase float-right">Update</button>
+    </form>
+    {% endfor %}
+{% endblock %}

@@ -20,7 +20,6 @@ def services(request):
 
     profile = get_object_or_404(UserProfile, user=request.user)
     remaining_services = Services.objects.filter(profile=profile)
-    # remaining_services = get_object_or_404(Services, profile=profile)
 
     context = {
         'remaining_services': remaining_services,
