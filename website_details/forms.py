@@ -12,5 +12,6 @@ class WebsiteForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields['company_name'].widget.attrs['autofocus'] = True
+        self.fields['services'].label = "Available subscriptions"
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'

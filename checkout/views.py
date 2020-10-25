@@ -9,7 +9,7 @@ from django.contrib import messages
 
 from .forms import OrderForm
 from .models import Order
-from profiles.models import UserProfile, ProfileLineItem
+from profiles.models import UserProfile
 from services.models import Services
 from profiles.forms import UserProfileForm
 

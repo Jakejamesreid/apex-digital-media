@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render, reverse
+from django.shortcuts import render
 
 from profiles.models import UserProfile
 
@@ -21,8 +21,10 @@ def website_details(request):
             messages.success(
                 request, 'Website details have been successfully submitted.')
         else:
-            messages.error(
-                request, 'Update failed. Please ensure the form is valid.')
+            for field in form:
+                for error in field.errors:
+                    messages.error(
+                        request, f"Update failed. {error}")
 
     form = WebsiteForm()
 

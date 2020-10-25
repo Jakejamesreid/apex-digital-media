@@ -4,6 +4,9 @@ from profiles.models import UserProfile
 
 
 class Services(models.Model):
+    class Meta:
+        verbose_name_plural = 'Services'
+
     profile = models.ForeignKey(UserProfile, null=False, blank=False,
                                 on_delete=models.CASCADE)
     package = models.ForeignKey(Package, null=False, blank=False,
@@ -18,4 +21,4 @@ class Services(models.Model):
         null=True, default=0)
 
     def __str__(self):
-        return 'Remaining Services'
+        return f'{self.package}'

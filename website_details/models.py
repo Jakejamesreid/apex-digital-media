@@ -1,10 +1,13 @@
 from django.db import models
 from profiles.models import UserProfile
+from services.models import Services
 
 
 class Website(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=1, blank=True, related_name='websites')
+                                     null=1, blank=True)
+    services = models.OneToOneField(Services, null=True,
+                                    on_delete=models.CASCADE)
     company_name = models.CharField(max_length=50)
     company_description = models.TextField()
     current_url = models.CharField(max_length=100, blank=True, null=True)

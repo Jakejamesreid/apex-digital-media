@@ -41,7 +41,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     instance.userprofile.save()
 
 
-class ProfileLineItem(models.Model):
+class ProfileLineItems(models.Model):
     profile = models.ForeignKey(UserProfile, null=False, blank=False,
                                 on_delete=models.CASCADE,
                                 related_name='lineitems')
