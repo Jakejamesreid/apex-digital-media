@@ -7,8 +7,6 @@ from django.contrib import messages
 from .models import Order
 from profiles.models import UserProfile
 
-import time
-
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""

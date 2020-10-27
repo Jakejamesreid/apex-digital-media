@@ -164,7 +164,8 @@ This structure is known as WaaS (Website as a Service)
 
 ## Credits
 
-### Data
+### Sources
+[Contact form](https://learndjango.com/tutorials/django-email-contact-form#)
 
 ### Media
 
