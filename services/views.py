@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.template.loader import render_to_string
 
-from profiles.models import ProfileLineItems, UserProfile
+from profiles.models import UserProfile
 from services.models import Services
 
 from .forms import RequestServiceForm
@@ -54,13 +54,16 @@ def decrement_service(request, service_id, service_name):
 
         form = RequestServiceForm(request.POST)
         if form.is_valid():
-            service = ProfileLineItems.objects.filter(
+            service = Services.objects.filter(
                 profile=profile, id=service_id).values()
+            # Decrement Services object based on service_name
             if service[0][service_name] > 0:
+                # service_name won't resolve with .update(service_name = val)
+                # So store in a dict and call .update with dict
                 data = {
                     service_name: service[0][service_name]-1
                 }
-                ProfileLineItems.objects.filter(
+                Services.objects.filter(
                     profile=profile, id=service_id).update(**data)
 
                 subject = render_to_string(
