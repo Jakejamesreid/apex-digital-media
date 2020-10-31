@@ -14,10 +14,6 @@ from .forms import RequestServiceForm
 @login_required
 def services(request):
     """ View services available """
-    if not request.user.is_superuser:
-        messages.info(request, 'Sorry, only clients can do that.')
-        return redirect(reverse('home'))
-
     profile = get_object_or_404(UserProfile, user=request.user)
     remaining_services = Services.objects.filter(profile=profile)
 

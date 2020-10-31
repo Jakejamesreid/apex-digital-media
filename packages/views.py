@@ -23,6 +23,10 @@ def all_packages(request):
 @login_required
 def add_package(request):
     """ Add a package to the store """
+    if not request.user.is_superuser:
+        messages.info(request, 'Sorry, only admins can do that.')
+        return redirect(reverse('home'))
+
     if request.method == 'POST':
         form = PackageForm(request.POST)
         if form.is_valid():

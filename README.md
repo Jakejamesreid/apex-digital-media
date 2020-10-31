@@ -398,7 +398,7 @@ Environment variables used are:
 * STRIPE_SECRET_KEY - Stripe secret key
 * STRIPE_WH_SECRET_APEX - Stripe webhook
 * USE_AWS - Boolean for whether or not to use Amazon Web Services
-* DEBUG - if set to DEVELOPMENT, enables debug mode
+* DEVELOPMENT - if set to True, enables debug mode
 
 ### Push to Heroku
 ```

@@ -4,7 +4,7 @@ from services.models import Services
 
 
 class Website(models.Model):
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE,
                                      null=1, blank=True)
     services = models.OneToOneField(Services, null=True,
                                     on_delete=models.CASCADE)

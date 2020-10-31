@@ -1,6 +1,11 @@
+html {
+  height: 100%;
+}
+
 body {
     font-family: 'Montserrat';
-    margin-top: 88px;
+    height: calc(100vh - 83px);
+    margin: 0;
 }
 
 .logo-image{
@@ -27,7 +32,6 @@ body {
 .brick-wall-bg{
     background: url('/media/wall-brick-white-cracked-paint-texture-background-1536x1025.jpg') no-repeat center center;
     background-size: cover;
-    height: 100%;
     width: 100%;
 }
 
@@ -83,6 +87,19 @@ body {
     background: #ab122b!important;
     color: white!important;
     padding: 8px 20px;
+}
+
+.btn-white-grey {
+    background: white;
+    color: #ab122b;
+    padding: 8px 20px;
+}
+
+.btn-white-grey:hover,
+.btn-white-grey:active,
+.btn-white-grey:focus {
+    background: #454145;
+    color: white;
 }
 /* -----Borders----- */
 
@@ -265,14 +282,18 @@ body {
   }
 }
 
-/* Fixed top navbar only on medium and up */
 @media (min-width: 992px) {
+    /* Fixed top navbar only on medium and up */
     .fixed-top-desktop-only {
         position: fixed;
         top: 0;
         right: 0;
         left: 0;
         z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 83px;
     }
 } 
 
@@ -305,5 +326,23 @@ body {
     .btn.btn-red.rounded-0.btn-lg {
         padding: .375rem .375rem;
         font-size: .75rem;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .container {
+        max-width: 100%;
+    }
+    #dashboard-content{
+        width: 100%;
+    }
+
+    #sidebar {
+        display: none;
+        margin-left: -250px;
+    }
+
+    .dropdown-menu{
+        left: -51px;
     }
 }
