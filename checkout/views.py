@@ -116,15 +116,16 @@ def checkout_success(request, order_number):
         order.save()
 
         package = get_object_or_404(Package, pk=order.package_id)
-        remaining_services = Services(
-                    profile=profile,
-                    package=package,
-                    remaining_pages=6,
-                    remaining_email_addresses=2,
-                    remaining_seo_updates=2,
-                    remaining_website_updates=5,
-                )
-        if package.id == 2:
+        if package.name == "Start Up":
+            remaining_services = Services(
+                        profile=profile,
+                        package=package,
+                        remaining_pages=6,
+                        remaining_email_addresses=2,
+                        remaining_seo_updates=2,
+                        remaining_website_updates=5,
+                    )
+        elif package.name == "Business":
             remaining_services = Services(
                                 profile=profile,
                                 package=package,
@@ -133,7 +134,7 @@ def checkout_success(request, order_number):
                                 remaining_seo_updates=2,
                                 remaining_website_updates=10,
                             )
-        elif package.id == 3:
+        elif package.name == "Executive":
             remaining_services = Services(
                                 profile=profile,
                                 package=package,
@@ -142,6 +143,16 @@ def checkout_success(request, order_number):
                                 remaining_seo_updates=2,
                                 remaining_website_updates=20,
                             )
+        else:
+            remaining_services = Services(
+                profile=profile,
+                package=package,
+                remaining_pages=6,
+                remaining_email_addresses=2,
+                remaining_seo_updates=2,
+                remaining_website_updates=5,
+            )
+
         remaining_services.save()
 
         profile_data = {

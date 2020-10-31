@@ -4,6 +4,7 @@ from .models import Package
 
 class PackageAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'name',
         'description',
         'features',
