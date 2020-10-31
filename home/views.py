@@ -17,7 +17,17 @@ def contact(request):
     """ A view to render the contact page. """
 
     if request.method == 'GET':
-        form = ContactForm()
+        if request.user.is_authenticated:
+            form = ContactForm(initial={
+                "first_name": request.user.first_name,
+                "last_name": request.user.last_name,
+                "from_email": request.user.email,
+                "contact_number":
+                request.user.userprofile.default_phone_number,
+                }
+            )
+        else:
+            form = ContactForm()
     else:
         form = ContactForm(request.POST)
         if form.is_valid():
