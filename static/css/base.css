@@ -136,6 +136,13 @@ body {
     right: 0;
 }
 
+.no-purchase {
+    border: 3px solid rgb(0, 0, 0, 0.4);
+    margin: 30px 50px;
+    padding: 30px 50px;
+    box-shadow: 0px 0px 30px 7px rgba(0,0,0,0.29);
+}
+
 #sidebar {
     width: 250px;
     position: fixed;

@@ -45,8 +45,9 @@ def website_details(request, website_id=0):
                         request, f"Update failed. {error}")
 
     websites = Website.objects.filter(user_profile=profile)
-    for website in websites:
-        forms.append(UpdateWebsiteForm(instance=website))
+    if websites:
+        for website in websites:
+            forms.append(UpdateWebsiteForm(instance=website))
 
     context = {
         'forms': forms,
