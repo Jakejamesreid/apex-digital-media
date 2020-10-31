@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
     height: calc(100vh - 83px);
     margin: 0;
 }

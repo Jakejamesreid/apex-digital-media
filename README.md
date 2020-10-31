@@ -3,7 +3,7 @@
 ## Welcome to Apex Digital Media!
 
 <div align="center">
-    <img src="{{ MEDIA_URL }}Apex-Digital-Logo-Rectangle-Transparent-BG-Red-Logo-300x127.png">
+    <img src="media/Apex-Digital-Logo-Rectangle-Transparent-BG-Red-Logo-300x127.png">
 </div>
 
 ***
@@ -128,7 +128,10 @@ Outside of the dashboard the website will be pretty simple with a homepage, abou
 ***
 
 #### Fonts
+The font used on this site was the Montserrat font designed by Julieta Ulnavosky. The inspiration for this font was from traditional posters
+and signs. As such the Montserrat font is a great font for readability and is generally regarded as one of the best fonts to use.
 
+Only one font was used as using many fonts can make a website look unstructured and messy.
 
 ***
 
@@ -137,6 +140,7 @@ The colour scheme used for this website is pretty simple.
 Primary colour: #ab122b
 Secondary colour: #fffff
 Form colour: rgba(0,0,0,0.6)
+Footer colour: #222222
 
 ***
 
@@ -303,8 +307,21 @@ Packages containe no relations to other tables
 #### Home Application
 This application is used to display the basic pages of the website such as the homepage, our plans and contact page
 
+#### Profiles Application
+This application is used to store all the users account information.
+
 #### Packages Application
 This application is concerned with adding, editing, deleting and displaying different packages.
+
+#### Checkout Application
+This application gives a user the ability to purchase a package using Stripe as a payment processor.
+
+#### Website Details Application
+This application allows a user to submit the details of the website they want to designed and to view all of the websites
+they have currently purchased.
+
+#### Services Application
+This application shows the available services and the quantity thatthe user has left in their subscription.
 
 ***
 
@@ -322,7 +339,7 @@ started with payments with the plan to change to subscriptions further down the 
 in Stripe require a lot of customer data to be stored in Stripe. As my customer data was set up to be stored in my database it would 
 have been too long and complicated a process to change everything over in time for the projects dealine. So the recurring payments 
 will be implemented at a later date.
-2. Resseting monthly services - Without the recurring payments it made it difficult to reset the users monthly services. This was to be done when a 
+2. Reseting monthly services - Without the recurring payments it made it difficult to reset the users monthly services. This was to be done when a 
 webhook was received from Stripe indicating that the client had paid their next months subscription. Without this webhook the best option would be to
 use a task scheduler such as celery to schedule a reset every month. Doing this felt redundant as the Stripe recurring payments will be implemented
 in a future update.
@@ -330,6 +347,7 @@ in a future update.
 not considered as important to have.
 4. The admin dashboard is not implmented due to time constraints. This part was an integral part of the website but unfortunately there was not enough
 time to implement it. Instead emails are sent to the admin to notify them of user requests.
+5. User account is not created on subscription. Instead the user has to register before subscribing.
 
 ***
 
@@ -443,6 +461,7 @@ python -m venv env
 [Django Documentation - URLs](https://docs.djangoproject.com/en/3.1/topics/http/urls/) - For passing parameters by URL
 [Django Documentation - Querysets](https://docs.djangoproject.com/en/3.1/topics/db/queries/) - For querying the database
 [Django Documentation - General](https://docs.djangoproject.com/en/3.1/) - For general Django understanding
+[MDbootstrap - Footer](https://mdbootstrap.com/docs/jquery/navigation/footer/) - Footer design
 
 ### Media
 All media was taken from my own website:
