@@ -449,6 +449,10 @@ python -m venv env
 3. Change the pythion interpreter in VS Code to be the python file located inside the venv
 ***
 
+### Differences between production and deployment
+The production version of the the web app sends real emails to users and uses AWS for storage of static files and images.
+The development version stores files locally and emails are sent to the console. The development version also has debug mode enabled.
+
 ## Credits
 
 ### Sources

@@ -30,7 +30,7 @@ def add_package(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added package!')
-            return redirect(reverse('add_package'))
+            return redirect(reverse('packages'))
         else:
             messages.error(
                 request,

@@ -4,6 +4,7 @@
     CSS from here: 
     https://stripe.com/docs/stripe-js
 */
+/*jshint esversion: 6 */ 
 
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
@@ -111,7 +112,7 @@ form.addEventListener('submit', function(ev) {
         });
     }).fail(function () {
         // just reload the page, the error will be in django messages
-        console.log("Post Failed")
+        console.log("Post Failed");
         location.reload();
-    })
+    });
 }); 
