@@ -121,6 +121,19 @@ body {
     border-bottom: 2px solid #ab122b;
 }
 
+/* -----Footer----- */
+#footer{
+    background: #222222!important;
+    color: white;
+}
+
+.footer_hyperlink a{
+    color: inherit;
+}
+
+.footer_hyperlink a:hover{
+    color: #ab122b;
+}
 
 /* -----Dashboard----- */
 .wrapper {

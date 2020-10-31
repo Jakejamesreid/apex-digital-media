@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block dashboard_heading %}Request a Service{% endblock %}
+{% block dashboard_heading %}Request a Service - {{ friendly_service_name }}{% endblock %}
 
 {% block dashboard_content %}
     <form class="mt-3" action="{% url 'decrement_service' service_id service_name %}" method="POST" id="request-service-form">
         {% csrf_token %}
-        {{ service_name }}
+        <p>Please provide the details on the service that you would like to avail of.</p>
         {{ form|crispy }}
         <button class="btn btn-red rounded-0 text-uppercase float-right">Request Service</button>
     </form>
+{% endblock %}
+
+{% block footer %}
 {% endblock %}

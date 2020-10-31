@@ -37,6 +37,7 @@ def request_service(request, service_id, service_name):
         'form': form,
         'service_id': service_id,
         'service_name': service_name,
+        'friendly_service_name': service_name.title().replace("_", " "),
     }
 
     return render(request, template, context)

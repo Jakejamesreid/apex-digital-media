@@ -2,7 +2,7 @@ from django import forms
 
 
 class RequestServiceForm(forms.Form):
-    description = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea, required=True)
 
     description.widget.attrs['placeholder'] = \
         'Please describe the service you want.'

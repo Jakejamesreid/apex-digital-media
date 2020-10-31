@@ -7,7 +7,7 @@
             <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
                     <div><i class="fas fa-user fa-lg icon-red"></i></div>
-                    <p class="my-0">My Account</p>
+                    <p class="my-0">{% if request.user.is_authenticated %} {{ request.user }}{% else %}My Account{% endif %}</p>
                 </div>
             </a>
             <div class="dropdown-menu" aria-labelledby="user-options">
