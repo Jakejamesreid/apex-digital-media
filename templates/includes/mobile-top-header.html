@@ -1,8 +1,11 @@
 <div class="row bg-white d-block d-lg-none" id="topnav">
     <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <!-- Toggle Dropdown Menu Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- User Account Dropdown Menu -->
         <li class="list-inline-item dropdown">
             <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
@@ -15,7 +18,7 @@
                     {% if request.user.is_superuser %}
                         <a href="{% url 'add_package' %}" class="dropdown-item">Add Package</a>
                     {% endif %}
-                    <a href="{% url 'profiles:profile' %}" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                     <a href="{% url 'website_details' %}" class="dropdown-item">Website Details</a>
                     <a href="{% url 'services' %}" class="dropdown-item">Services</a>
                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>

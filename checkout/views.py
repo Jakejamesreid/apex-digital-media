@@ -18,6 +18,7 @@ import stripe
 
 @require_POST
 def cache_checkout_data(request):
+    """ A view used to cache some checkout data. """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -31,9 +32,9 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-# package_id is default 0 for when payment form is submitted
 @login_required
 def checkout(request, package_id):
+    """ A view to handle purchasing of a package. """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -77,7 +78,6 @@ def checkout(request, package_id):
         )
 
         # Attempt to prefill form with user profile info
-
         try:
             profile = UserProfile.objects.get(user=request.user)
             order_form = OrderForm(initial={
@@ -106,9 +106,7 @@ def checkout(request, package_id):
 
 
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
+    """ Handle successful checkouts and initialise remaining service values. """
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:

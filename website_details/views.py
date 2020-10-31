@@ -15,6 +15,7 @@ def website_details(request, website_id=0):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     forms = []
+    # Post request from the SUBMIT website form
     if request.method == 'POST' and 'submit-website' in request.POST:
         form = SubmitWebsiteForm(request.POST)
         if form.is_valid():
@@ -30,6 +31,7 @@ def website_details(request, website_id=0):
                     messages.error(
                         request, f"Update failed. {error}")
 
+    # Post request from the UPDATE website form
     elif request.method == 'POST' and 'update-website' in request.POST:
         website = Website.objects.get(
                 user_profile=profile, id=website_id)
@@ -44,6 +46,7 @@ def website_details(request, website_id=0):
                     messages.error(
                         request, f"Update failed. {error}")
 
+    # Get websites and append to a list
     websites = Website.objects.filter(user_profile=profile)
     if websites:
         for website in websites:

@@ -16,6 +16,7 @@
 {% block content %}
     <div class="w-100 brick-wall-bg">
         <div class="container">
+            <!-- Heading -->
             <div class="row">
                 <div class="col text-center mt-3">
                     <h1 class="logo-font">Checkout</h1>
@@ -25,9 +26,11 @@
             <div class="row">
                 <div class="product-container col-10 offset-1">
                     <div class="row mt-1 mb-2">
+                        <!-- Package -->
                         <div class="col-12 col-md-6 order-md-last">
                             {% include 'includes/package.html' %}
                         </div>
+                        <!-- Checkout Form -->
                         <div class="col-12 col-md-6 red-bg py-4 border">
                             <p class="text-white">Please fill out the form below to complete your order</p>
                             <form action="{% url 'checkout' package.id %}" method="POST" id="payment-form">
@@ -58,6 +61,7 @@
                                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                                 </fieldset>
 
+                                <!-- Form Buttons and Charge Price -->
                                 <div class="text-right mt-3 mt-md-5 mb-2">                    
                                     <a href="{% url 'packages' %}" class="btn btn-white-grey rounded-0 mt-3">
                                         <span class="icon">
@@ -85,6 +89,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Payment Overlay -->
     <div id="loading-overlay">
         <h1 class="text-light logo-font loading-spinner">
             <span class="icon">

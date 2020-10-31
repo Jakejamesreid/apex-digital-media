@@ -462,6 +462,7 @@ python -m venv env
 [Django Documentation - Querysets](https://docs.djangoproject.com/en/3.1/topics/db/queries/) - For querying the database
 [Django Documentation - General](https://docs.djangoproject.com/en/3.1/) - For general Django understanding
 [MDbootstrap - Footer](https://mdbootstrap.com/docs/jquery/navigation/footer/) - Footer design
+[Stripe Docs](https://stripe.com/docs/payments/accept-a-payment) - Stripe Payment logic
 
 ### Media
 All media was taken from my own website:

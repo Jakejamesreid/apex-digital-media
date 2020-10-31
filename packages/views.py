@@ -7,7 +7,7 @@ from .models import Package
 
 
 def all_packages(request):
-    """ A view to show all packages """
+    """ A view to show all packages. """
 
     packages = Package.objects.all()
 
@@ -20,7 +20,7 @@ def all_packages(request):
 
 @login_required
 def add_package(request):
-    """ Add a package to the store """
+    """ Add a package to the store. """
     if not request.user.is_superuser:
         messages.info(request, 'Sorry, only admins can do that.')
         return redirect(reverse('home'))
@@ -49,7 +49,7 @@ def add_package(request):
 
 @login_required
 def edit_package(request, package_id):
-    """ Edit a package in the store """
+    """ Edit a package in the store. """
     if not request.user.is_superuser:
         messages.info(request, 'Sorry, only admins can do that.')
         return redirect(reverse('home'))
@@ -81,7 +81,7 @@ def edit_package(request, package_id):
 
 @login_required
 def delete_package(request, package_id):
-    """ Delete a package from the store """
+    """ Delete a package from the store. """
     if not request.user.is_superuser:
         messages.info(request, 'Sorry, only admins can do that.')
         return redirect(reverse('home'))

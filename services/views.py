@@ -13,7 +13,7 @@ from .forms import RequestServiceForm
 
 @login_required
 def services(request):
-    """ View services available """
+    """ View services available. """
     profile = get_object_or_404(UserProfile, user=request.user)
     remaining_services = Services.objects.filter(profile=profile)
 
@@ -53,6 +53,7 @@ def decrement_service(request, service_id, service_name):
         if form.is_valid():
             service = Services.objects.filter(
                 profile=profile, id=service_id).values()
+            
             # Decrement Services object based on service_name
             if service[0][service_name] > 0:
                 # service_name won't resolve with .update(service_name = val)

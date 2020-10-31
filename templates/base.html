@@ -45,12 +45,17 @@
     <body>
 
         <header class="container-fluid fixed-top">
+            <!-- Top Navigation Menu -->
             <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+            
+                <!-- Logo -->
                 <div class="col-12 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-left">
                     <a href="{% url 'home' %}" class="nav-link main-logo-link">
                         <img class="logo-image" src="{{ MEDIA_URL }}Apex-Digital-Logo-Rectangle-Transparent-BG-Red-Logo-300x127.png" alt="">
                     </a>
                 </div>
+
+                <!-- Links -->
                 <div class="col-12 col-lg-6 my-auto py-1 py-lg-0">
                     <nav class="navbar navbar-expand-lg navbar-light w-100">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +65,8 @@
                         {% include 'includes/main-nav.html' %}             
                     </nav>
                 </div>
+
+                <!-- My Account Section -->
                 <div class="col-12 col-lg-3 my-auto py-1 py-lg-0">
                     <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                         <li class="list-inline-item dropdown">
@@ -74,7 +81,7 @@
                                     {% if request.user.is_superuser %}
                                         <a href="{% url 'add_package' %}" class="dropdown-item">Admin Dashboard</a>
                                     {% endif %}
-                                    <a href="{% url 'profiles:profile' %}" class="dropdown-item">My Profile</a>
+                                    <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                                 {% else %}
                                     <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
@@ -86,9 +93,9 @@
                 </div>
             </div>
             {% include 'includes/mobile-top-header.html' %}
-    
         </header>
 
+        <!-- Toast Notifications -->
         {% if messages %}
             <div class="message-container">
                 {% for message in messages %}
@@ -118,8 +125,12 @@
         {% block content %}
             <!-- Customise the Dashboard login area -->
             <div class="wrapper">
+                <!-- Sidebar -->
                 {% include 'includes/sidebar.html' %}
+
+                <!-- Dashboard -->
                 <div class="container" id="dashboard-content">
+                    <!-- Heading -->
                     <div class="row justify-content-end">
                         <div class="col-12">
                             <hr>
@@ -127,6 +138,7 @@
                             <hr>
                         </div>
                     </div>
+                    <!-- Content -->
                     <div class="row justify-content-end">
                         <div class="col-12">
                             {% block dashboard_content %}
@@ -177,13 +189,10 @@
         </footer>
         {% endblock %}
 
-
         {% block postloadjs %}
         <script type="text/javascript">
             $('.toast').toast('show');
         </script>
-        {% endblock %}
-
-        
+        {% endblock %}   
     </body>
 </html>

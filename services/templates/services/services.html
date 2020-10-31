@@ -9,16 +9,19 @@
 
 {% block dashboard_content %}
 
+    <!-- Display users remaining sevices -->
     {% if remaining_services %}
         {% for service in remaining_services %}
             <div class="table-responsive">
                 <table class="table">
                     <thead>
+                        <!-- Main Heading -->
                         <tr>
                             <th colspan="2" class="text-center table-heading">
                                 Plan: {{ service.package.name }}
                             </th>
                         </tr>
+                        <!-- Sub Headings -->
                         <tr>
                             <th>
                                 Remaining Single Use Services
@@ -29,6 +32,7 @@
                         </tr>
                     </thead>
                     <tbody class="file-item">
+                            <!-- Services and their quantities -->
                             <tr class="item-list">
                                 <td class="service-table-cell">
                                     Remaining Pages: {{ service.remaining_pages }}
@@ -52,7 +56,6 @@
                     </tbody>
                 </table>
             </div>
-
             {% endfor %}
     {% else %}
         <div class="no-purchase text-center">
@@ -61,7 +64,6 @@
         </div>
     {% endif %}
 {% endblock %}
-
 
 {% block footer %}
 {% endblock %}
