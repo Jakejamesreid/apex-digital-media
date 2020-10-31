@@ -10,7 +10,7 @@ class Website(models.Model):
                                     on_delete=models.CASCADE)
     company_name = models.CharField(max_length=50)
     company_description = models.TextField()
-    current_url = models.CharField(max_length=100, blank=True, null=True)
+    current_url = models.CharField(max_length=100, blank=True, null=1)
     new_site_description = models.TextField()
 
     def __str__(self):

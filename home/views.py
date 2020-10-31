@@ -1,5 +1,5 @@
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.shortcuts import render, redirect

@@ -2,8 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render, reverse
 from django.contrib import messages
 
-from profiles.models import UserProfile
-
 from .forms import PackageForm
 from .models import Package
 
@@ -34,7 +32,10 @@ def add_package(request):
             messages.success(request, 'Successfully added package!')
             return redirect(reverse('add_package'))
         else:
-            messages.error(request, 'Failed to add package. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add package. Please ensure the form is valid.'
+            )
     else:
         form = PackageForm()
 
@@ -61,7 +62,10 @@ def edit_package(request, package_id):
             messages.success(request, 'Successfully updated package!')
             return redirect(reverse('packages'))
         else:
-            messages.error(request, 'Failed to update package. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update package. Please ensure the form is valid.'
+            )
     else:
         form = PackageForm(instance=package)
         messages.info(request, f'You are editing the {package.name} package')
