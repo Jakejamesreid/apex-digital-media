@@ -38,9 +38,9 @@ through small monthly payments. This structure is known as WaaS (Website as a Se
 * [Technology Used](#technology-used)
 * [Deployment](#deployment)
 * [Credits](#credits)
-    * [Data](#data)
+    * [Inspiration](#inspiration)
     * [Media](#media)
-    * [Acknowledgements](#acknowledgements)
+    * [Sources](#sources)
     * [Attribution](#attribution)
 
 ***
@@ -325,11 +325,31 @@ This application shows the available services and the quantity thatthe user has 
 
 ***
 
-
 ## Testing
+Unit testing was used to test the Home, packages and and website_details apps. Unfortunately due to time constraints
+a more in depth unit testing could not be performed.
+
+### Home
+Ensure that the correct templates are being called for specific views
+Ensure that specific form fields are marked as required
+
+### Packages
+Ensure that the correct templates are being called for specific views
+Ensure that specific form fields are marked as required
+Validating that packages can be added, edited and deleted
+
+### Manual Testing
+Extensive manual testing of the site was performed throughout development. This involved:
+* Testing the that buttons and links redirect to the correct page
+* Forms validate users input
+* Double payments cannot be made and webhooks create orders in the database when there are issues with checkout form
+* Site is responsive overall
+* User cannot break the site using back or forward buttons
+* Suffiecient error handling is implemented on all edge case scenarios dealing with database data
+* User login is required for specific URLs
+* Super Users can only access Admin URls
 
 ***
-
 
 ## Issues 
 
@@ -455,6 +475,14 @@ The development version stores files locally and emails are sent to the console.
 
 ## Credits
 
+### Inspiration
+The inspiration for this website came from my own web design website which is currently just a brochure website.
+Design and content elements were taken from the original site apexdigitalmedia.ie
+
+### Media
+All media was taken from my own website:
+[Apex Digital Media](https://apexdigitalmedia.ie/)
+
 ### Sources
 [Table to Markdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/) - Used to create the User Stories table
 [Apex Digital Media](https://apexdigitalmedia.ie/) - Used as the source of inspiration for this project
@@ -467,10 +495,6 @@ The development version stores files locally and emails are sent to the console.
 [Django Documentation - General](https://docs.djangoproject.com/en/3.1/) - For general Django understanding
 [MDbootstrap - Footer](https://mdbootstrap.com/docs/jquery/navigation/footer/) - Footer design
 [Stripe Docs](https://stripe.com/docs/payments/accept-a-payment) - Stripe Payment logic
-
-### Media
-All media was taken from my own website:
-[Apex Digital Media](https://apexdigitalmedia.ie/)
 
 ### Attribution
 A special thanks to my mentor Akshat Garg, the tutor services and the Slack community for their help and advice during this project.
